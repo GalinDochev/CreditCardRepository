@@ -4,6 +4,7 @@ class CreditCardState {
   final String expiration;
   final String cvvNumber;
   final String errorMessage;
+  final bool scanSuccessful;
 
   CreditCardState({
     this.cardNumber = '',
@@ -11,6 +12,7 @@ class CreditCardState {
     this.expiration = '',
     this.cvvNumber = '',
     this.errorMessage = '',
+    this.scanSuccessful = false,
   });
 
   CreditCardState copyWith({
@@ -19,13 +21,15 @@ class CreditCardState {
     String? expiration,
     String? cvv,
     String? errorMessage,
+    bool? scanSuccessful,
   }) {
     return CreditCardState(
       cardNumber: cardNumber ?? this.cardNumber,
       cardHolder: cardHolder ?? this.cardHolder,
       expiration: expiration ?? this.expiration,
       cvvNumber: cvv ?? cvvNumber,
-      errorMessage:errorMessage  ?? this.errorMessage,
+      errorMessage: errorMessage ?? this.errorMessage,
+      scanSuccessful: scanSuccessful ?? this.scanSuccessful,
     );
   }
 }

@@ -32,13 +32,11 @@ class CreditCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Container(
-        height: context.setHeight(32),
-        padding: EdgeInsets.only(
-          left: context.setHorizontalPadding(context, 5),
-          right: context.setHorizontalPadding(context, 5),
-          bottom: context.setVerticalPadding(context, 3),
+        height: context.setHeight(35),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.setHorizontalPadding(context, 5),
+          vertical: context.setVerticalPadding(context, 3),
         ),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,19 +44,21 @@ class CreditCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  bankName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
+                Flexible(
+                  child: Text(
+                    bankName,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ),
                 Image.asset(
                   logoPath,
-                  height: 60,
-                  width: 60,
+                  height: context.setHeight(7),
+                  width: context.setWidth(15),
                 ),
               ],
             ),
@@ -66,14 +66,14 @@ class CreditCardWidget extends StatelessWidget {
               children: [
                 Image.asset(
                   AppConstants.chipImagePath,
-                  height: 50,
-                  width: 60,
+                  height: context.setHeight(6),
+                  width: context.setWidth(14),
                 ),
                 const SizedBox(width: 8),
                 Image.asset(
                   AppConstants.contactLessIconPath,
-                  height: 30,
-                  width: 30,
+                  height: context.setHeight(4),
+                  width: context.setWidth(10),
                 ),
               ],
             ),
@@ -93,10 +93,16 @@ class CreditCardWidget extends StatelessWidget {
                   label: AppConstants.cardholderLabel,
                   value: cardHolder,
                 ),
-                _buildDetailsBlock(label: AppConstants.validThruLabel, value: cardExpiration),
+                _buildDetailsBlock(
+                  label: AppConstants.validThruLabel,
+                  value: cardExpiration,
+                ),
               ],
             ),
-            _buildDetailsBlock(label: AppConstants.cvvHint, value: cvvCardNumber),
+            _buildDetailsBlock(
+              label: AppConstants.cvvHint,
+              value: cvvCardNumber,
+            ),
           ],
         ),
       ),
@@ -111,7 +117,10 @@ class CreditCardWidget extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-              color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold),
+            color: Colors.black,
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           value,

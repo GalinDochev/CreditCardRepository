@@ -38,7 +38,8 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     emit(state.copyWith(errorMessage:''));
   }
 
-  Future<void> _onFillCardDetails(FillCardDetails event, Emitter<CreditCardState> emit) async {
+  Future<void> _onFillCardDetails(
+      FillCardDetails event, Emitter<CreditCardState> emit) async {
     final CardDetails? cardDetails = await CardScanner.scanCard(
       scanOptions: const CardScanOptions(
         scanCardHolderName: true,
@@ -50,10 +51,13 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
         cardNumber: cardDetails.cardNumber,
         cardHolder: cardDetails.cardHolderName,
         expiration: cardDetails.expiryDate,
+        scanSuccessful: true,
       );
       emit(newState);
     } else {
-      emit(state.copyWith(errorMessage:AppConstants.scanningErrorMessage));
+      emit(state.copyWith(
+          errorMessage: AppConstants.scanningErrorMessage,
+          scanSuccessful: false));
     }
   }
 }

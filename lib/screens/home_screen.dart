@@ -37,6 +37,14 @@ class HomeScreen extends StatelessWidget {
                   );
                   context.read<CreditCardBloc>().add(ClearErrorMessage());
                 }
+
+                // Check if the scan was successful and update the controllers
+                if (state.scanSuccessful) {
+                  cardNumberController.text = state.cardNumber;
+                  cardHolderController.text = state.cardHolder;
+                  expirationController.text = state.expiration;
+                  cvvController.text = state.cvvNumber;
+                }
               },
               child: BlocBuilder<CreditCardBloc, CreditCardState>(
                 builder: (context, state) {
@@ -61,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                           logoPath: AppConstants.logoPath,
                           cvvCardNumber: state.cvvNumber,
                         ),
-                        SizedBox(height: context.setHeight(2)),
+                        SizedBox(height: context.setHeight(3)),
                         TextFieldWidget(
                           hintText: AppConstants.cardNumberHint,
                           prefixIcon: Icons.credit_card,
@@ -206,7 +214,7 @@ class HomeScreen extends StatelessWidget {
                                     .add(FillCardDetails());
                               },
                               child: const Text(
-                                  AppConstants.fillCardDetailsButtonText),
+                                  AppConstants.scanCardDetailsButtonText),
                             ),
                           ],
                         ),

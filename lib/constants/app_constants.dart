@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,7 @@ class AppConstants {
   static const String expirationHint = 'MM/YY';
   static const String cvvHint = 'CVV';
   static const String submitButtonText = 'Submit';
-  static const String fillCardDetailsButtonText = 'Fill Card Details';
+  static const String scanCardDetailsButtonText = 'Scan Card Details';
   static const String cardNumberEmptyMessage = 'Please enter a card number';
   static const String cardNumberDigitMessage = 'Card number must contain only digits';
   static const String cardNumberLengthMessage = 'Card number must be exactly 16 digits';
@@ -22,7 +21,7 @@ class AppConstants {
   static const String cardExpiredMessage = 'Card expired';
   static const String cvvEmptyMessage = 'Please enter CVV';
   static const String cvvFormatMessage = 'CVV must be exactly 3 digits';
-  static const String validationSuccessMessage = 'All inputs are valid!';
+  static const String validationSuccessMessage = 'All inputs are valid! Congratulations you have successfully filled the fields!';
   static const String validationErrorMessage = 'Please correct the errors';
   static const String scanningErrorMessage = 'Scanning Incomplete. Please try again or fill out the information manually';
   static const String cardholderLabel = 'CARDHOLDER';
