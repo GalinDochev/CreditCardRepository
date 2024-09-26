@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Credit Card',
+      title: 'Credit Card Scanner',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

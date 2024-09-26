@@ -1,3 +1,4 @@
+import 'package:debit_card_scanner/constants/app_constants.dart';
 import 'package:debit_card_scanner/extensions/build_context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -64,13 +65,13 @@ class CreditCardWidget extends StatelessWidget {
             Row(
               children: [
                 Image.asset(
-                  "assets/images/chip.png",
+                  AppConstants.chipImagePath,
                   height: 50,
                   width: 60,
                 ),
                 const SizedBox(width: 8),
                 Image.asset(
-                  "assets/icons/contact_less.png",
+                  AppConstants.contactLessIconPath,
                   height: 30,
                   width: 30,
                 ),
@@ -89,13 +90,13 @@ class CreditCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 _buildDetailsBlock(
-                  label: 'CARDHOLDER',
+                  label: AppConstants.cardholderLabel,
                   value: cardHolder,
                 ),
-                _buildDetailsBlock(label: 'VALID THRU', value: cardExpiration),
+                _buildDetailsBlock(label: AppConstants.validThruLabel, value: cardExpiration),
               ],
             ),
-            _buildDetailsBlock(label: 'CVV', value: cvvCardNumber),
+            _buildDetailsBlock(label: AppConstants.cvvHint, value: cvvCardNumber),
           ],
         ),
       ),

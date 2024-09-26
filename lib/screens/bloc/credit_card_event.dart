@@ -25,15 +25,7 @@ class UpdateCardCvvNumber extends CreditCardEvent {
 }
 
 class FillCardDetails extends CreditCardEvent {
-  final String cardNumber;
-  final String cardHolder;
-  final String expiration;
-  final String cvvNumber;
-
-  FillCardDetails({
-    required this.cardNumber,
-    required this.cardHolder,
-    required this.expiration,
-    required this.cvvNumber,
-  });
+  FillCardDetails();
 }
+
+class ClearErrorMessage extends CreditCardEvent {}
