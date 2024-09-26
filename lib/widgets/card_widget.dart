@@ -1,3 +1,4 @@
+import 'package:debit_card_scanner/extensions/build_context_extensions.dart';
 import 'package:flutter/material.dart';
 
 // A reusable widget to build a credit card
@@ -8,8 +9,8 @@ class CreditCardWidget extends StatelessWidget {
   final String cardExpiration;
   final String bankName;
   final String logoPath;
+  final String cvvCardNumber;
 
-  // Constructor to accept required values for credit card
   const CreditCardWidget({
     super.key,
     required this.color,
@@ -18,6 +19,7 @@ class CreditCardWidget extends StatelessWidget {
     required this.cardExpiration,
     required this.bankName,
     required this.logoPath,
+    required this.cvvCardNumber,
   });
 
   @override
@@ -29,8 +31,13 @@ class CreditCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Container(
-        height: 230,
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 22.0),
+        height: context.setHeight(32),
+        padding: EdgeInsets.only(
+          left: context.setHorizontalPadding(context, 5),
+          right: context.setHorizontalPadding(context, 5),
+          bottom: context.setVerticalPadding(context, 3),
+        ),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,13 +95,14 @@ class CreditCardWidget extends StatelessWidget {
                 _buildDetailsBlock(label: 'VALID THRU', value: cardExpiration),
               ],
             ),
+            _buildDetailsBlock(label: 'CVV', value: cvvCardNumber),
           ],
         ),
       ),
     );
   }
 
-  // Helper widget to build the details section on the card (CARDHOLDER and VALID THRU)
+  // Small helper widget to build the details section on the card (CARDHOLDER and VALID THRU)
   Column _buildDetailsBlock({required String label, required String value}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +110,7 @@ class CreditCardWidget extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-              color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold),
+              color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold),
         ),
         Text(
           value,
@@ -112,7 +120,7 @@ class CreditCardWidget extends StatelessWidget {
             fontWeight: FontWeight.w600,
             letterSpacing: .5,
           ),
-        )
+        ),
       ],
     );
   }
