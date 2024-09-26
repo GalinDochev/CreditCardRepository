@@ -2,7 +2,6 @@ import 'package:debit_card_scanner/constants/app_constants.dart';
 import 'package:debit_card_scanner/extensions/build_context_extensions.dart';
 import 'package:flutter/material.dart';
 
-// A reusable widget to build a credit card
 class CreditCardWidget extends StatelessWidget {
   final Color color;
   final String cardNumber;
@@ -25,85 +24,90 @@ class CreditCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      color: color,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Container(
-        height: context.setHeight(35),
-        padding: EdgeInsets.symmetric(
-          horizontal: context.setHorizontalPadding(context, 5),
-          vertical: context.setVerticalPadding(context, 3),
+    return SingleChildScrollView( // Scroll in case of overflow
+      child: Card(
+        elevation: 4.0,
+        color: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    bankName,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 21,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.setHorizontalPadding(context, 4),
+            vertical: context.setVerticalPadding(context, 2),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Text(
+                      bankName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 21,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
-                Image.asset(
-                  logoPath,
-                  height: context.setHeight(7),
-                  width: context.setWidth(15),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Image.asset(
-                  AppConstants.chipImagePath,
-                  height: context.setHeight(6),
-                  width: context.setWidth(14),
-                ),
-                const SizedBox(width: 8),
-                Image.asset(
-                  AppConstants.contactLessIconPath,
-                  height: context.setHeight(4),
-                  width: context.setWidth(10),
-                ),
-              ],
-            ),
-            Text(
-              cardNumber,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 21,
-                letterSpacing: 4,
-                fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: context.setWidth(15),
+                    height: context.setHeight(7),
+                    child: Image.asset(
+                      logoPath,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildDetailsBlock(
-                  label: AppConstants.cardholderLabel,
-                  value: cardHolder,
+              Row(
+                children: [
+                  Image.asset(
+                    AppConstants.chipImagePath,
+                    height: context.setHeight(6),
+                    width: context.setWidth(14),
+                  ),
+                  const SizedBox(width: 8),
+                  Image.asset(
+                    AppConstants.contactLessIconPath,
+                    height: context.setHeight(4),
+                    width: context.setWidth(10),
+                  ),
+                ],
+              ),
+              Text(
+                cardNumber,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 21,
+                  letterSpacing: 4,
+                  fontWeight: FontWeight.w500,
                 ),
-                _buildDetailsBlock(
-                  label: AppConstants.validThruLabel,
-                  value: cardExpiration,
-                ),
-              ],
-            ),
-            _buildDetailsBlock(
-              label: AppConstants.cvvHint,
-              value: cvvCardNumber,
-            ),
-          ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _buildDetailsBlock(
+                    label: AppConstants.cardholderLabel,
+                    value: cardHolder,
+                  ),
+                  _buildDetailsBlock(
+                    label: AppConstants.validThruLabel,
+                    value: cardExpiration,
+                  ),
+                ],
+              ),
+              _buildDetailsBlock(
+                label: AppConstants.cvvHint,
+                value: cvvCardNumber,
+              ),
+            ],
+          ),
         ),
       ),
     );

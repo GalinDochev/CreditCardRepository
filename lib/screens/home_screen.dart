@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
       create: (context) => CreditCardBloc(),
       child: Scaffold(
         appBar: AppBar(
+          forceMaterialTransparency: true,
           title: const Text(AppConstants.appTitle),
         ),
         body: SingleChildScrollView(
