@@ -29,6 +29,7 @@ class AppConstants {
   static const String chipImagePath = "assets/images/chip.png";
   static const String contactLessIconPath = "assets/icons/contact_less.png";
   static const String defaultCardNumber = '**** **** **** ****';
+  static const String defaultCvvNumber = '***';
   static const String defaultCardHolder = 'John Doe';
   static const String bankName = 'MasterCard';
   static const String logoPath = 'assets/logos/mastercard.png';

@@ -68,7 +68,9 @@ class HomeScreen extends StatelessWidget {
                               : AppConstants.expirationHint,
                           bankName: AppConstants.bankName,
                           logoPath: AppConstants.logoPath,
-                          cvvCardNumber: state.cvvNumber,
+                          cvvCardNumber: state.cvvNumber.isNotEmpty
+                              ? state.cvvNumber
+                              : AppConstants.defaultCvvNumber,
                         ),
                         SizedBox(height: context.setHeight(3)),
                         TextFieldWidget(
