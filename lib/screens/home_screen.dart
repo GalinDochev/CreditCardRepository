@@ -139,9 +139,20 @@ class HomeScreen extends StatelessWidget {
                           prefixIcon: Icons.calendar_today,
                           controller: expirationController,
                           onChanged: (value) {
-                            context
-                                .read<CreditCardBloc>()
-                                .add(UpdateCardExpiration(expiration: value));
+                            String sanitizedValue = value.replaceAll('/', '');
+                            if (sanitizedValue.length >= 2) {
+                              sanitizedValue =
+                                  '${sanitizedValue.substring(0, 2)}/${sanitizedValue.substring(2)}';
+                            }
+                            if (expirationController.text != sanitizedValue) {
+                              expirationController.text = sanitizedValue;
+                              expirationController.selection =
+                                  TextSelection.collapsed(
+                                      offset: sanitizedValue.length);
+                            }
+                            context.read<CreditCardBloc>().add(
+                                UpdateCardExpiration(
+                                    expiration: sanitizedValue));
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {

@@ -16,7 +16,15 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
 
   Future<void> _onUpdateCardNumber(
       UpdateCardNumber event, Emitter<CreditCardState> emit) async {
-    emit(state.copyWith(cardNumber: event.cardNumber));
+    String cardNumber = event.cardNumber;
+    StringBuffer formatted = StringBuffer();
+    for (int i = 0; i < cardNumber.length; i++) {
+      if (i % 4 == 0 && i != 0) {
+        formatted.write(' ');
+      }
+      formatted.write(cardNumber[i]);
+    }
+    emit(state.copyWith(cardNumber: formatted.toString()));
   }
 
   Future<void> _onUpdateCardHolder(
